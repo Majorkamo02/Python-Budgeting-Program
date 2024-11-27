@@ -1,12 +1,13 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey, Date
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+from user import Base
 
-Base = declarative_base()
 
-class Transaction(Base):
-    __tablename__ = "transaction_table"
-    transaction_id = Column("Transaction Id", Integer, primary_key=True)
-    date = Column("Date", String)
-    amount = Column("Amount in $", Float)
+class UserTransaction(Base):
+    __tablename__ = "Transactions"
+    id = Column(Integer,primary_key=True, unique=True)
+    date = Column(Date)
+    category = Column(String)
+    amount = Column(Float)
+    user_id = Column(Integer, ForeignKey("Users.id"))
 
-    User = relationship("user_table", back_populates=("transaction_table"))
