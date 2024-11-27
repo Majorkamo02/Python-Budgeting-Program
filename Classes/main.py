@@ -1,12 +1,12 @@
-from Classes.data_management import data_management
+from data_management import data_management
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from Classes.user import User, Base
-
+from user import User, Base
+from database import init_db
 
 
 def main():
-
+    init_db()
 
     test_user2 = data_management.create_new_user()
     # test_user = data_management.create_new_user("Cameron","Jolly","cameron.l.jolly@gmail.com")
