@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker, DeclarativeBase
-from Data_Base.database import Base
+from sqlalchemy.orm import relationship
+from database import Base
 
 class User(Base):
     __tablename__ = "Users"
@@ -11,13 +11,6 @@ class User(Base):
     Transactions = relationship("UserTransaction",backref="User")
 
 
-    # @property
-    # def account_number(self):
-    #     pass
-    
-    # @account_number.setter
-    # def account_number(self, new_id):
-    #     pass
 
     # @property
     # def first_name(self):

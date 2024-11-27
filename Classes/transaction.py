@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey, Date
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
-from user import Base
+from database import Base
 
 
 class UserTransaction(Base):
-    __tablename__ = "Transactions"
+    __tablename__ = "UserTransactions"
     id = Column(Integer,primary_key=True, unique=True)
     date = Column(Date)
     category = Column(String)
