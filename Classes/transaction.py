@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey, Date
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker, backref
 from database import Base
 
 
@@ -10,4 +10,3 @@ class UserTransaction(Base):
     category = Column(String)
     amount = Column(Float)
     user_id = Column(Integer, ForeignKey("Users.id"))
-
