@@ -8,9 +8,18 @@ class User(Base):
     first_name = Column(String)
     last_name = Column(String)
     email = Column(String, unique=True)
-    Transactions = relationship("UserTransaction",backref="User")
+    Transactions = relationship("UserTransaction",backref="User", cascade="all, delete-orphan")
+
+    password = Column(String)
 
 
+    # @property
+    # def account_number(self):
+    #     pass
+    
+    # @account_number.setter
+    # def account_number(self, new_id):
+    #     pass
 
     # @property
     # def first_name(self):
