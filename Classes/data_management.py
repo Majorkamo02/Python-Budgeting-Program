@@ -69,18 +69,18 @@ class data_management(User):
         session.commit()
         return "sucess"
 
-    def create_expense(current_user: User, amount, category, storename, Income_date=None):
-        new_expense = Income(storename=storename,amount=amount,category=category,date=datetime.datetime.strptime(Income_date, '%m-%d-%Y').date() if Income_date else datetime.date.today())
+    def create_expense(current_user: User, amount, category, storename, expense_date=None):
+        new_expense = Expense(storename=storename,amount=amount,category=category,date=datetime.datetime.strptime(expense_date, '%Y-%m-%d').date() if expense_date else datetime.date.today())
         session.add(new_expense)
         current_user.Transactions.append(new_expense)
         session.commit()
 
     def get_expense(start_date, end_date, current_user:User):
-        expense = session.query(Expense).filter(Expense.user_id == current_user.id, Income.date.between(f"{start_date}",f"{end_date}")).all()
+        expense = session.query(Expense).filter(Expense.user_id == current_user.id, Expense.date.between(f"{start_date}",f"{end_date}")).all()
         return expense
 
     def create_income(current_user:User, amount, employer, Income_date=None):
-        new_income = Income(amount=amount,employer=employer,date=datetime.datetime.strptime(Income_date, '%m-%d-%Y').date() if Income_date else datetime.date.today())
+        new_income = Income(amount=amount,employer=employer,date=datetime.datetime.strptime(Income_date, '%Y-%m-%d').date() if Income_date else datetime.date.today())
         session.add(new_income)
         current_user.Transactions.append(new_income)
         session.commit()
@@ -89,12 +89,12 @@ class data_management(User):
         income = session.query(Income).filter(Income.user_id == current_user.id, Income.date.between(f"{start_date}",f"{end_date}")).all()
         return income
 
-    def create_saving(current_user: User, category, amount, employer):
-        new_saving = Income(date=datetime.date.today(), category=category, amount=amount, storename=employer)
+    def create_saving(current_user: User, amount, account_name, account_type,saving_date=None):
+        new_saving = Save(date=datetime.datetime.strptime(saving_date, '%Y-%m-%d').date() if saving_date else datetime.date.today(), amount=amount,account_name=account_name, account_type=account_type )
         session.add(new_saving)
         current_user.Transactions.append(new_saving)
         session.commit()
 
     def get_saving(start_date, end_date, current_user:User):
-        income = session.query(Save).filter(Save.user_id == current_user.id, Income.date.between(f"{start_date}",f"{end_date}")).all()
-        return income
+        save = session.query(Save).filter(Save.user_id == current_user.id, Save.date.between(f"{start_date}",f"{end_date}")).all()
+        return save
