@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from user import User, Base
 from database import init_db
 import matplotlib
-
+import datetime
 
 
 
@@ -40,12 +40,12 @@ def main():
 
             match main_menu:
                 case '1':
-                    all_income=data_management.get_income("2010-1-10","2024-11-30",current_user)
+                    all_income=data_management.get_income(start_date="2001-01-01",end_date=datetime.date.today(),current_user=current_user)
                     for single_income in all_income:
                         print(single_income)
                 case'2':
-                    data_management.create_income(current_user, employer="Job", amount=1644)
-                    data_management.create_income(current_user, employer="Job", amount=3443, Income_date="01-2-2021")
+                    data_management.create_saving(current_user, 2500, "Roth IRA", "Retirement")
+                    data_management.create_saving(current_user, 15000, "Daily Spending", "Checking", "2021-01-24")
                 case _:
                     pass
         
