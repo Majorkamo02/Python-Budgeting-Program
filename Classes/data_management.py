@@ -7,7 +7,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from income import Income
 from expense import Expense
 from savings import Save
-from rich import print
 
 
 def get_valid(question, warning, type):

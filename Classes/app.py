@@ -7,6 +7,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from database import init_db
 import datetime
 import ctkdlib
+from ctk_date_picker import CTkDatePicker as date_picker
 
 class Budgeting_App(customtkinter.CTk):
     def __init__(self):
@@ -186,11 +187,11 @@ class Dashboard(customtkinter.CTkFrame):
 
         self.start_date_entry = customtkinter.CTkEntry(master=calendar_frame, placeholder_text="Start Date")
         self.start_date_entry.grid(row=0, column=0, pady=10, padx=10)
-        self.start_date_picker = ctkdlib.CTkDatePicker(self.start_date_entry)
+        self.start_date_picker = date_picker(self.start_date_entry)
 
         self.end_date_entry = customtkinter.CTkEntry(master=calendar_frame, placeholder_text="End Date")
         self.end_date_entry.grid(row=0, column=1, pady=10, padx=10)
-        self.end_date_picker = ctkdlib.CTkDatePicker(self.end_date_entry)
+        self.end_date_picker = date_picker(self.end_date_entry)
 
         self.update_graphs = customtkinter.CTkButton(master=calendar_frame, text="Update Based on Dates", command=self.update_based_on_dates)
         self.update_graphs.grid(row=3,column=0, columnspan=2,padx=10, pady=10, sticky="nsew")
@@ -379,7 +380,7 @@ class Create_Expense(customtkinter.CTkFrame):
 
         self.date_entry = customtkinter.CTkEntry(master=self, placeholder_text="Expense Date")
         self.date_entry.pack(pady=10, padx=10)
-        self.end_date_picker = ctkdlib.CTkDatePicker(self.date_entry)
+        self.end_date_picker = date_picker(self.date_entry)
 
         self.create_expense_button = customtkinter.CTkButton(master=self, text="Create New Expense", command=self.create_new_expense)
         self.create_expense_button.pack(pady=12, padx=10)
@@ -435,7 +436,7 @@ class Create_Income(customtkinter.CTkFrame):
 
         self.date_entry = customtkinter.CTkEntry(master=self, placeholder_text="Income Date")
         self.date_entry.pack(pady=10, padx=10)
-        self.end_date_picker = ctkdlib.CTkDatePicker(self.date_entry)
+        self.end_date_picker = date_picker(self.date_entry)
 
         self.create_income_button = customtkinter.CTkButton(master=self, text="Create New Income", command=self.create_new_income)
         self.create_income_button.pack(pady=12, padx=10)
@@ -491,7 +492,7 @@ class Create_Saving(customtkinter.CTkFrame):
 
         self.date_entry = customtkinter.CTkEntry(master=self, placeholder_text="Saving Date")
         self.date_entry.pack(pady=10, padx=10)
-        self.date_entry_picker = ctkdlib.CTkDatePicker(self.date_entry)
+        self.date_entry_picker = date_picker(self.date_entry)
 
         self.create_saving_button = customtkinter.CTkButton(master=self, text="Create New Saving", command=self.create_new_income)
         self.create_saving_button.pack(pady=12, padx=10)
