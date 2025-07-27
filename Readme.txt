@@ -17,8 +17,3 @@ Once the program is loaded you can create your own user or just click sign in wi
 
 
 once logged in you are able to add expenses, savings amounts, and income amounts. this will automatically update the graphs. once those are added you are able to filter by date
-
-
-
-
-Heads up, ctk_date_picker is not made by me, it is added in as an add on for ctkdlib but due to codio I moved this over as a local file since it doesn't come with the pip installation of ctkdlib
